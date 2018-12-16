@@ -1,7 +1,7 @@
 public enum PlaneType {
 
-    BOEING747(3),
-    BOEING740(2),
+    BOEING747(4),
+    BOEING740(1),
     BOEING748(5);
 
 

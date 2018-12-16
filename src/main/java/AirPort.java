@@ -11,6 +11,8 @@ public class AirPort {
         this.flights = new ArrayList<Flight>();
     }
 
+
+
     //GETTERS///////////////////////////////////////////////////////////////////
 
 
@@ -24,6 +26,14 @@ public class AirPort {
 
     public ArrayList<Flight> getFlights() {
         return flights;
+    }
+
+    public int findPlaneCapacity(Flight flight){
+        return flight.getPlane().getPlaneType().getValue();
+    }
+
+    public int howManyBookedOnFlight(Flight flight){
+        return flight.getPlane().getPassengers().size();
     }
 
     //SETTERS/////////////////////////////////////////////////////////////////
@@ -50,27 +60,19 @@ public class AirPort {
 
     }
 
-    public int findPlaneCapacity(Flight flight){
-        return flight.getPlane().getPlaneType().getValue();
-
-    }
 
     public void sellTicketToPassenger(int cost, Passenger passenger, AirPort airport, String destination){
         for(Flight flight: flights){
             if (destination == flight.getDestination()){
-                if (flight.numberOfPassengersBooked() <= flight.planeCapacity() && passenger.getWallet() >= cost){
-
+                if (flight.numberOfPassengersBooked() < flight.planeCapacity()  && passenger.getWallet() >= cost){
                     passenger.payMoney(cost);
                     airport.addPassengerToFlight(flight, passenger);
-
                 }
             }
         }
     }
 
-    public int howManyBookedOnFlight(Flight flight){
-        return flight.getPlane().getPassengers().size();
-    }
+
 
 
 }
